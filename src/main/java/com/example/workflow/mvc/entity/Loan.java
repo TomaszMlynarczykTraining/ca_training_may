@@ -1,11 +1,13 @@
 package com.example.workflow.mvc.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Builder
 @Data
 public class Loan implements Serializable {
 
