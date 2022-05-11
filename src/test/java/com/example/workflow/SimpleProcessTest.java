@@ -29,7 +29,6 @@ public class SimpleProcessTest extends AbstractProcessEngineRuleTest {
 
         ProcessInstance processInstance = runtimeService().startProcessInstanceByKey("PR_003_USER_TASK");
 
-
         assertThat(processInstance).isStarted()
                 .task()
                 .hasDefinitionKey("FirstTask");
@@ -39,6 +38,7 @@ public class SimpleProcessTest extends AbstractProcessEngineRuleTest {
 
         BpmnAwareTests.complete(task);
         assertThat(processInstance).hasPassed("FirstTask");
+
         task = taskService().createTaskQuery().processInstanceId(processInstance.getId()).singleResult();
         BpmnAwareTests.complete(task);
         assertThat(processInstance).hasPassed("SecondTask");
