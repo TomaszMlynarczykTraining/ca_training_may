@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0em3kdh" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+  <decision id="LoanDecisionGrupa3" name="Decision 1">
+    <decisionTable id="DecisionTable_11vxpoz">
+      <input id="Input_1" label="Declared income" camunda:inputVariable="declaredIncome">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0f7r79d" label="Declared income" camunda:inputVariable="declaredIncome">
+        <inputExpression id="LiteralExpression_1bbgu9w" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_07wgamc" label="Debt amount sum" camunda:inputVariable="debtAmountSum">
+        <inputExpression id="LiteralExpression_1mfma83" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_083t8lc" label="Loan amount sum" camunda:inputVariable="loanAmountSum">
+        <inputExpression id="LiteralExpression_1mc7aay" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Loan option" name="loanOption" typeRef="string" />
+      <rule id="DecisionRule_1qszrpl">
+        <inputEntry id="UnaryTests_0jsts8a">
+          <text>&gt;2000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1abfkn2">
+          <text>&lt;=4000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lqk35w">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d4c8sk">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1r3xw54">
+          <text>"SHORT"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0265kyl">
+        <inputEntry id="UnaryTests_0rlo968">
+          <text>&gt;4000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dopmu8">
+          <text>&lt;=10000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i2mu3m">
+          <text>&gt;5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x9eoif">
+          <text>&lt;3000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bcqgmd">
+          <text>"LONG"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wevkul">
+        <inputEntry id="UnaryTests_08hbqbi">
+          <text>&gt;10000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mt5em1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10s4v8y">
+          <text>&gt;5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kbd99m">
+          <text>&lt;8000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1llhr1x">
+          <text>"HOUSE"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1c2bkrl">
+        <inputEntry id="UnaryTests_1ksqbzx">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13l0z5u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bibwe8">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yvz2ic">
+          <text>null</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_024zy66">
+          <text>"ERROR"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="LoanDecisionGrupa3">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
