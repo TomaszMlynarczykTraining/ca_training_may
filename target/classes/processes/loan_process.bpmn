@@ -8,34 +8,38 @@
       <bpmn:lane id="Lane_13yth67">
         <bpmn:flowNodeRef>GR_01_GATEWAY_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GR_01_CHOOSE_OPTIONS</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>GR_01_GATEWAY_3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_19zoq05</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1u3puso</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1ope75p</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1f6rj4j</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0p8a13w</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>GR_01_SUB_LONG_TERM</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GR_01_FILL_IN_DATA</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GR_01_VALIDATE_USER_DATA</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GR_01_GATEWAY_2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GR_01_GATEWAY_3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GR_01_SUB_LONG_TERM</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_19zoq05</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_05o6kjp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1j7kxkg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GR_01_START_EVENT</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GR_01_START_EVENT2</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_1wif15b">
           <bpmn:lane id="Lane_0y6rwwk">
             <bpmn:flowNodeRef>GR_01_GATEWAY_1</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>GR_01_CHOOSE_OPTIONS</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>GR_01_GATEWAY_3</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Activity_19zoq05</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_1u3puso</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Gateway_1ope75p</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_1f6rj4j</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Event_0p8a13w</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>GR_01_SUB_LONG_TERM</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>GR_01_FILL_IN_DATA</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>GR_01_VALIDATE_USER_DATA</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>GR_01_GATEWAY_2</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>GR_01_GATEWAY_3</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>GR_01_SUB_LONG_TERM</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_19zoq05</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Gateway_05o6kjp</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_1j7kxkg</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>GR_01_START_EVENT</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>GR_01_START_EVENT2</bpmn:flowNodeRef>
           </bpmn:lane>
         </bpmn:childLaneSet>
       </bpmn:lane>
@@ -54,16 +58,6 @@
       <bpmn:incoming>Flow_0hin12m</bpmn:incoming>
       <bpmn:outgoing>Flow_04drssn</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="GR_01_GATEWAY_3" name="Which loan option?">
-      <bpmn:incoming>Flow_1y3ewfl</bpmn:incoming>
-      <bpmn:outgoing>Flow_1fr5qdi</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0ddkwwa</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1125mt9</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:manualTask id="Activity_19zoq05" name="Short term loan process">
-      <bpmn:incoming>Flow_0ddkwwa</bpmn:incoming>
-      <bpmn:outgoing>Flow_1hjnuvv</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:manualTask id="Activity_1u3puso" name="House loan process">
       <bpmn:incoming>Flow_1125mt9</bpmn:incoming>
       <bpmn:outgoing>Flow_1u1j0pl</bpmn:outgoing>
@@ -81,10 +75,6 @@
     <bpmn:endEvent id="Event_0p8a13w" name="End loan process">
       <bpmn:incoming>Flow_080mx64</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:manualTask id="GR_01_SUB_LONG_TERM" name="Long term loan process">
-      <bpmn:incoming>Flow_1fr5qdi</bpmn:incoming>
-      <bpmn:outgoing>Flow_0lcuto1</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_1fr5qdi" sourceRef="GR_01_GATEWAY_3" targetRef="GR_01_SUB_LONG_TERM">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${loanOption=="LONG"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -118,16 +108,6 @@
       <bpmn:outgoing>Flow_1w1hvn4</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:serviceTask id="GR_01_VALIDATE_USER_DATA" name="ValidateUserData" camunda:delegateExpression="${validateUserData}">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="declaredIncome">${declaredIncome}</camunda:inputParameter>
-          <camunda:inputParameter name="currency">${currency}</camunda:inputParameter>
-          <camunda:inputParameter name="phoneNumber">${userIdentificationNumber}</camunda:inputParameter>
-          <camunda:inputParameter name="street">${street}</camunda:inputParameter>
-          <camunda:inputParameter name="loanOption">${loanOption}</camunda:inputParameter>
-          <camunda:inputParameter name="userIdentificationNumber">${userIdentificationNumber}</camunda:inputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1w1hvn4</bpmn:incoming>
       <bpmn:outgoing>Flow_168iy1z</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -139,6 +119,35 @@
     <bpmn:sequenceFlow id="Flow_1y3ewfl" sourceRef="GR_01_GATEWAY_2" targetRef="GR_01_GATEWAY_3">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isDataValid==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0rbkdw1" sourceRef="Activity_1j7kxkg" targetRef="GR_01_GATEWAY_1" />
+    <bpmn:inclusiveGateway id="GR_01_GATEWAY_3" name="Which loan option?">
+      <bpmn:incoming>Flow_1y3ewfl</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fr5qdi</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0ddkwwa</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1125mt9</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:callActivity id="GR_01_SUB_LONG_TERM" name="Long term loan process" calledElement="Process_18as73y">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="clientId">${userIdentificationNumber}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1fr5qdi</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lcuto1</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_19zoq05" name="Short term loan process" calledElement="SHORT_TERM_LOAN_PROCESS">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ddkwwa</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hjnuvv</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:exclusiveGateway id="Gateway_05o6kjp">
+      <bpmn:incoming>Flow_1dmz0e9</bpmn:incoming>
+      <bpmn:incoming>Flow_0lahv7u</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zhx9qs</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
     <bpmn:serviceTask id="Activity_1j7kxkg" name="GetBitcoinRate" camunda:type="external" camunda:topic="bitcoinRateTopic">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -146,15 +155,21 @@
           <camunda:outputParameter name="bitcoinRate">${bitcoinRate}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1dmz0e9</bpmn:incoming>
+      <bpmn:incoming>Flow_0zhx9qs</bpmn:incoming>
       <bpmn:outgoing>Flow_0rbkdw1</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_0rbkdw1" sourceRef="Activity_1j7kxkg" targetRef="GR_01_GATEWAY_1" />
+    <bpmn:sequenceFlow id="Flow_0zhx9qs" sourceRef="Gateway_05o6kjp" targetRef="Activity_1j7kxkg" />
+    <bpmn:sequenceFlow id="Flow_1dmz0e9" sourceRef="GR_01_START_EVENT" targetRef="Gateway_05o6kjp" />
     <bpmn:startEvent id="GR_01_START_EVENT" name="Start Loan Process">
       <bpmn:outgoing>Flow_1dmz0e9</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_1bzeia9" signalRef="Signal_0mbe0nz" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_1dmz0e9" sourceRef="GR_01_START_EVENT" targetRef="Activity_1j7kxkg" />
+    <bpmn:startEvent id="GR_01_START_EVENT2" name="Start Loan Process - cockpit">
+      <bpmn:outgoing>Flow_0lahv7u</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0lahv7u" sourceRef="GR_01_START_EVENT2" targetRef="Gateway_05o6kjp" />
   </bpmn:process>
+  <bpmn:signal id="Signal_0mbe0nz" name="GR_01_SIGNAL" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GR_01">
       <bpmndi:BPMNShape id="Participant_0hqqm8n_di" bpmnElement="Participant_0hqqm8n" isHorizontal="true">
@@ -172,6 +187,22 @@
       <bpmndi:BPMNShape id="Lane_0y6rwwk_di" bpmnElement="Lane_0y6rwwk" isHorizontal="true">
         <dc:Bounds x="185" y="80" width="1765" height="390" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1dmz0e9_di" bpmnElement="Flow_1dmz0e9">
+        <di:waypoint x="228" y="170" />
+        <di:waypoint x="275" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zhx9qs_di" bpmnElement="Flow_0zhx9qs">
+        <di:waypoint x="325" y="170" />
+        <di:waypoint x="350" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rbkdw1_di" bpmnElement="Flow_0rbkdw1">
+        <di:waypoint x="400" y="210" />
+        <di:waypoint x="400" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y3ewfl_di" bpmnElement="Flow_1y3ewfl">
+        <di:waypoint x="905" y="270" />
+        <di:waypoint x="1085" y="270" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_080mx64_di" bpmnElement="Flow_080mx64">
         <di:waypoint x="1610" y="270" />
         <di:waypoint x="1692" y="270" />
@@ -233,36 +264,16 @@
         <di:waypoint x="1110" y="150" />
         <di:waypoint x="1210" y="150" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1y3ewfl_di" bpmnElement="Flow_1y3ewfl">
-        <di:waypoint x="905" y="270" />
-        <di:waypoint x="1085" y="270" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0rbkdw1_di" bpmnElement="Flow_0rbkdw1">
-        <di:waypoint x="360" y="280" />
-        <di:waypoint x="368" y="280" />
-        <di:waypoint x="368" y="270" />
-        <di:waypoint x="375" y="270" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1dmz0e9_di" bpmnElement="Flow_1dmz0e9">
+      <bpmndi:BPMNEdge id="Flow_0lahv7u_di" bpmnElement="Flow_0lahv7u">
         <di:waypoint x="228" y="270" />
-        <di:waypoint x="244" y="270" />
-        <di:waypoint x="244" y="280" />
-        <di:waypoint x="260" y="280" />
+        <di:waypoint x="300" y="270" />
+        <di:waypoint x="300" y="195" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_0e8ud4b_di" bpmnElement="GR_01_GATEWAY_1" isMarkerVisible="true">
         <dc:Bounds x="375" y="245" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ifujkr_di" bpmnElement="GR_01_CHOOSE_OPTIONS">
         <dc:Bounds x="480" y="230" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0kftich_di" bpmnElement="GR_01_GATEWAY_3" isMarkerVisible="true">
-        <dc:Bounds x="1085" y="245" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1083" y="208" width="54" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0k3fhwr_di" bpmnElement="Activity_19zoq05">
-        <dc:Bounds x="1210" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_05uzrlt_di" bpmnElement="Activity_1u3puso">
         <dc:Bounds x="1210" y="343" width="100" height="80" />
@@ -279,9 +290,6 @@
           <dc:Bounds x="1667" y="295" width="86" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_01mu9y9_di" bpmnElement="GR_01_SUB_LONG_TERM">
-        <dc:Bounds x="1210" y="110" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1tmn6un_di" bpmnElement="GR_01_FILL_IN_DATA">
         <dc:Bounds x="610" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -294,13 +302,34 @@
           <dc:Bounds x="846" y="221" width="67" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ug7v0g_di" bpmnElement="Activity_1j7kxkg">
-        <dc:Bounds x="260" y="240" width="100" height="80" />
+      <bpmndi:BPMNShape id="Gateway_08gdlkj_di" bpmnElement="GR_01_GATEWAY_3">
+        <dc:Bounds x="1085" y="245" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1083" y="208" width="54" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="GR_01_START_EVENT">
+      <bpmndi:BPMNShape id="Activity_01nuj6r_di" bpmnElement="GR_01_SUB_LONG_TERM">
+        <dc:Bounds x="1210" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h5h5qm_di" bpmnElement="Activity_19zoq05">
+        <dc:Bounds x="1210" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_05o6kjp_di" bpmnElement="Gateway_05o6kjp" isMarkerVisible="true">
+        <dc:Bounds x="275" y="145" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ug7v0g_di" bpmnElement="Activity_1j7kxkg">
+        <dc:Bounds x="350" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ff0eq3_di" bpmnElement="GR_01_START_EVENT">
+        <dc:Bounds x="192" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="195" width="51" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0liyi26_di" bpmnElement="GR_01_START_EVENT2">
         <dc:Bounds x="192" y="252" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="185" y="295" width="51" height="27" />
+          <dc:Bounds x="168" y="295" width="85" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
