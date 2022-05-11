@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_11n3gb1" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+  <decision id="Decision_1f9xoy3" name="Decision 1">
+    <decisionTable id="DecisionTable_0k5yqim" hitPolicy="FIRST">
+      <input id="Input_1" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text>declaredIncome</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0hx84ot">
+        <inputExpression id="LiteralExpression_1q2vny0" typeRef="long">
+          <text>debtAmount</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_10en6u6">
+        <inputExpression id="LiteralExpression_1njgek8" typeRef="long">
+          <text>loanAmount</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="output" typeRef="string" />
+      <rule id="DecisionRule_06m1y08">
+        <inputEntry id="UnaryTests_1tti351">
+          <text>&gt;2000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t8zmw5">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cn0bz5">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mpomp1">
+          <text>"short_term"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1dldy2s">
+        <inputEntry id="UnaryTests_1clid5x">
+          <text>&gt;4000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04s3hpn">
+          <text>&gt;5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yt67cr">
+          <text>&lt;3000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0uqumwz">
+          <text>"long_term"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yj901g">
+        <inputEntry id="UnaryTests_0p4oxkk">
+          <text>&gt;10000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ponofc">
+          <text>&gt;5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yxu7d5">
+          <text>&lt;8000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17hw1fa">
+          <text>"house_loan"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10oksxq">
+        <inputEntry id="UnaryTests_0r9sicl">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02e7521">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ld0dwf">
+          <text>null</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0a2r121">
+          <text>"error"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1f9xoy3">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
